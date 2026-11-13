@@ -1,4 +1,4 @@
-# Jobtimize - AI-Powered Recruitment Platform 🚀 hí ộ
+# Jobtimize - AI-Powered Recruitment Platform 🚀
 
 Cập nhật tài liệu: **04/11/2026**.
 
@@ -7,7 +7,7 @@ Nền tảng tuyển dụng thông minh tích hợp AI (lấy cảm hứng từ 
 ## Quản lý CV và đối chiếu kỹ năng
 
 - Hồ sơ cá nhân và **Quản lý CV** là hai mục riêng. Vào `/candidate/dashboard?tab=cvs` để tải file, xem trạng thái, đối chiếu bản gốc, sửa thông tin nhận diện, xác nhận, đổi tên, chọn CV chính, tải phiên bản mới, xem lịch sử hoặc xóa khỏi danh sách.
-- Nhận PDF, DOCX, PNG/JPG/WebP đúng định dạng, tối đa 10 MB; PDF tối đa 20 trang. PDF có chữ và DOCX được trích văn bản trực tiếp. Ảnh, PDF scan hoặc PDF có trang thiếu chữ được gửi tới dịch vụ nhận diện đã cấu hình phía server. Không cam kết nhận diện tuyệt đối chính xác: người dùng phải kiểm tra trước khi sử dụng. Không hỗ trợ `.doc` cũ hoặc PDF bị khóa; cần xuất lại PDF/DOCX.
+- Nhận PDF, DOCX, PNG/JPG/WebP đúng định dạng, tối đa 10 MB; PDF tối đa 20 trang. PDF có chữ và DOCX được trích văn bản trực tiếp. Ảnh, PDF scan hoặc PDF có trang thiếu chữ được gửi tới dịch vụ nhận diện đã cấu hình phía server. Không cam kết nhận diện và tuyệt đối chính xác: người dùng phải kiểm tra trước khi sử dụng. Không hỗ trợ `.doc` cũ hoặc PDF bị khóa; cần xuất lại PDF/DOCX.
 - Trạng thái lưu trong SQL: `Queued → Processing → NeedsReview → Ready`, hoặc `Failed` với thao tác đọc lại/nhập thủ công. Worker chạy cùng API; công việc dở dang có lease để phục hồi sau khi khởi động lại. Cần cấu hình `AI_PROVIDER` và khóa tương ứng trong `server/.env` để đọc file; CV tạo bằng trình thiết kế dùng trực tiếp dữ liệu có cấu trúc.
 - Bằng chứng kỹ năng phải xuất hiện trong văn bản trích xuất; chuẩn hóa theo SkillTaxonomy và kiểm tra ranh giới từ/phủ định. Không thêm kỹ năng từ chức danh hay hồ sơ khác. Kết quả trích xuất và kết quả người dùng xác nhận được lưu riêng. Điểm dùng đúng CV được chọn (hoặc CV chính), kỹ năng bắt buộc có trọng số 2, ưu tiên có trọng số 1. Chưa xác nhận, lỗi đọc hoặc thiếu tiêu chí hiển thị chưa đủ dữ liệu; điểm không đại diện xác suất tuyển dụng.
 - File mới lưu ở `server/private/cv-documents/` (đã ignore), chỉ tải qua API có kiểm tra chủ sở hữu/quyền xem. Không phục vụ công khai upload CV cũ. CV tải lên cũ được chuyển riêng tư khi truy cập; file ngoài hệ thống/không còn tồn tại phải tải lại. Sao lưu thư mục private cùng database.
